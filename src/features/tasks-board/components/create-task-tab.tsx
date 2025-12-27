@@ -168,7 +168,7 @@ export function CreateTaskTab() {
       title: "",
       desc: "",
       weekly: true,
-      days: [todayWeekDay()],
+      days: [],
       range: { from: undefined, to: undefined },
       line: 1,
       color: "zinc",
