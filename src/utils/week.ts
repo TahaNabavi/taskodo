@@ -14,18 +14,27 @@ export function toLocalDateKey(d: Date) {
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, "0");
   const day = String(d.getDate()).padStart(2, "0");
-  return `${y}-${m}-${day}`; 
+  return `${y}-${m}-${day}`;
 }
 
-export function getMostRecentWeekdayDate(baseDate: Date, weekday: WeekDays) {
+export function getWeekdayDateInSameWeek(baseDate: Date, weekday: WeekDays) {
   const base = new Date(baseDate);
   base.setHours(0, 0, 0, 0);
 
-  const targetIndex = WEEK.indexOf(weekday);
   const baseIndex = base.getDay();
+  const targetIndex = WEEK.indexOf(weekday);
 
-  const diff = (baseIndex - targetIndex + 7) % 7;
-  const result = new Date(base);
-  result.setDate(base.getDate() - diff);
+  if (targetIndex === -1) {
+    throw new Error(
+      `Invalid weekday: "${weekday}". Must be one of: ${WEEK.join(", ")}`,
+    );
+  }
+
+  const startOfWeek = new Date(base);
+  startOfWeek.setDate(base.getDate() - baseIndex);
+
+  const result = new Date(startOfWeek);
+  result.setDate(startOfWeek.getDate() + targetIndex);
+
   return result;
 }

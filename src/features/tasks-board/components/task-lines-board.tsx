@@ -13,7 +13,7 @@ import {
 import { arrayMove } from "@dnd-kit/sortable";
 
 import type { WeekDays } from "@/src/types/common";
-import { getMostRecentWeekdayDate, toLocalDateKey } from "@/src/utils";
+import { getWeekdayDateInSameWeek, toLocalDateKey } from "@/src/utils";
 
 import { useTasksStore } from "../stores/task.store";
 import type { Task } from "../types";
@@ -22,9 +22,10 @@ import { DragTaskOverlay } from "./drag-task-overlay";
 
 type Props = {
   activeDay: WeekDays;
+  weekStart: Date;
 };
 
-export function TaskLinesBoard({ activeDay }: Props) {
+export function TaskLinesBoard({ activeDay, weekStart }: Props) {
   const tasks = useTasksStore((s) => s.tasks);
   const updateTask = useTasksStore((s) => s.updateTask);
 
@@ -34,7 +35,7 @@ export function TaskLinesBoard({ activeDay }: Props) {
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
   );
 
-  const viewDate = getMostRecentWeekdayDate(new Date(), activeDay);
+  const viewDate = getWeekdayDateInSameWeek(weekStart, activeDay);
   const viewKey = toLocalDateKey(viewDate);
 
   const dayTasks = tasks.filter((t) => {

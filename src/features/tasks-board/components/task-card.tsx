@@ -48,6 +48,7 @@ export function TaskCard({ task, dateKey }: Props) {
   const checkHandler = (e?: React.MouseEvent) => {
     e?.stopPropagation();
 
+    console.log(dateKey, toDay);
     const nextChecked: Task["checked"] = isChecked
       ? task.checked.filter((d) => d.date !== dateKey)
       : [

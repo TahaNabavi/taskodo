@@ -1,9 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { z } from "zod";
 import type { DateRange } from "react-day-picker";
-import { format } from "date-fns";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useWatch } from "react-hook-form";
 
@@ -23,11 +21,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/src/components/ui/card";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/src/components/ui/popover";
 import { Calendar } from "@/src/components/ui/calendar";
 import {
   Select,
@@ -117,7 +110,6 @@ export function CreateTaskTab() {
   const weekly = useWatch({ control: form.control, name: "weekly" });
   const days = useWatch({ control: form.control, name: "days" });
   const line = useWatch({ control: form.control, name: "line" });
-  const range = useWatch({ control: form.control, name: "range" });
 
   const toggleDay = (day: WeekDays) => {
     const next = days.includes(day)
@@ -125,11 +117,6 @@ export function CreateTaskTab() {
       : [...days, day];
     form.setValue("days", next, { shouldValidate: true });
   };
-
-  const rangeLabel =
-    range?.from && range?.to
-      ? `${format(range.from, "PPP")} → ${format(range.to, "PPP")}`
-      : "Pick date range";
 
   const onSubmit = (values: FormValues) => {
     const id = crypto.randomUUID();
@@ -180,7 +167,7 @@ export function CreateTaskTab() {
     <div className="w-full">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Card className="w-full rounded-2xl bg-black/20 border-black">
+          <Card className="w-full rounded-2xl bg-black/20 border-black h-[calc(100vh-290px)]! overflow-y-scroll">
             <CardHeader className="">
               <CardTitle className="text-white/80 text-2xl">
                 Create Task
@@ -300,30 +287,15 @@ export function CreateTaskTab() {
                       <FormItem className="mt-4">
                         <FormLabel>Date range</FormLabel>
 
-                        <Popover>
-                          <PopoverTrigger>
-                            <Button
-                              type="button"
-                              variant="outline"
-                              className={cn(
-                                "w-full justify-start rounded-xl",
-                                !(range?.from && range?.to) && "text-white/50",
-                              )}
-                            >
-                              {rangeLabel}
-                            </Button>
-                          </PopoverTrigger>
-
-                          <PopoverContent className="p-0" align="start">
-                            <Calendar
-                              mode="range"
-                              selected={field.value as DateRange | undefined}
-                              onSelect={(r) => field.onChange(r)}
-                              numberOfMonths={2}
-                              initialFocus
-                            />
-                          </PopoverContent>
-                        </Popover>
+                        <div className="flex justify-center text-white! bg-neutral-800 rounded-4xl squircle">
+                          <Calendar
+                            mode="range"
+                            selected={field.value as DateRange | undefined}
+                            onSelect={(r) => field.onChange(r)}
+                            numberOfMonths={2}
+                            initialFocus
+                          />
+                        </div>
 
                         {form.formState.errors.range?.message ? (
                           <p className="text-sm text-destructive">
