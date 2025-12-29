@@ -27,7 +27,7 @@ export function LineColumn({ line, title, tasks, dateKey }: Props) {
       ref={setNodeRef}
       className="flex-1 rounded-4xl border border-black squircle bg-black/30 p-3 h-[calc(100vh-290px)]! overflow-y-scroll"
     >
-      <div className="mb-3 text-xs font-semibold text-primary">{title}</div>
+      <div className="mb-3 text-xs font-extralight text-primary">{title}</div>
 
       <SortableContext
         items={tasks.map((t) => t.id)}

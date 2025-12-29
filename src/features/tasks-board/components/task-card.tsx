@@ -72,8 +72,8 @@ export function TaskCard({ task, dateKey }: Props) {
         className={cn(
           "squircle rounded-3xl w-full relative",
           isChecked && "opacity-50",
-          isChecked && checked?.late && "border-red-600!",
-          isChecked && checked?.early && "border-green-600!",
+          isChecked && checked?.late && "border-red-600! shadow-red-600!",
+          isChecked && checked?.early && "border-green-600! shadow-green-600!",
         )}
       >
         <button

@@ -17,7 +17,6 @@ import { TAB_CONTENT } from "./constants";
 import { TaskLinesBoard } from "./components/task-lines-board";
 import { CreateTaskTab } from "./components/create-task-tab";
 import { Button } from "@/src/components/ui";
-import { toLocalDateKey } from "@/src/utils";
 
 function startOfWeekSunday(d: Date) {
   const x = new Date(d);
@@ -97,9 +96,13 @@ export function TasksBoardFeature() {
                 <HugeiconsIcon icon={ArrowUp01Icon} />
               </Button>
 
-              <span className="text-xs">{weekEndDayOfMonth}</span>
+              <span className="text-xs font-extralight">
+                {weekEndDayOfMonth}
+              </span>
               <span className="text-xs">-</span>
-              <span className="text-xs">{weekStartDayOfMonth}</span>
+              <span className="text-xs font-extralight">
+                {weekStartDayOfMonth}
+              </span>
 
               <Button
                 variant="ghost"

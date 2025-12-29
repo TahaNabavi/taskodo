@@ -172,7 +172,7 @@ export function CreateTaskTab() {
               <CardTitle className="text-white/80 text-2xl">
                 Create Task
               </CardTitle>
-              <CardDescription className="text-white/60">
+              <CardDescription className="text-white/60 font-extralight">
                 Select weekdays always. If not weekly, choose the date window
                 where it’s active.
               </CardDescription>
@@ -225,7 +225,7 @@ export function CreateTaskTab() {
                 <div className="flex items-start justify-between gap-6">
                   <div className="space-y-1">
                     <Label className="text-white/80">Weekly repeat</Label>
-                    <p className="text-sm text-white/50">
+                    <p className="text-sm text-white/50 font-extralight">
                       On = repeats forever. Off = active only in a date range.
                     </p>
                   </div>
@@ -401,7 +401,7 @@ export function CreateTaskTab() {
                   </div>
                 </div>
 
-                <p className="text-xs text-white/40">
+                <p className="text-xs text-white/40 font-extralight">
                   Weekly tasks are always active. Non-weekly tasks only appear
                   between the selected range.
                 </p>
