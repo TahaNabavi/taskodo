@@ -91,7 +91,7 @@ export function TasksBoardFeature() {
                 className="px-1 rounded-full delay-100"
                 onClick={() => setWeekOffset((w) => w + 1)}
                 aria-label="Next week"
-                disabled
+                disabled={activeTab === -1}
               >
                 <HugeiconsIcon icon={ArrowUp01Icon} />
               </Button>
