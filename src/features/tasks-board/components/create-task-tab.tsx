@@ -1,6 +1,5 @@
 "use client";
 
-import { z } from "zod";
 import type { DateRange } from "react-day-picker";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useWatch } from "react-hook-form";
@@ -43,57 +42,17 @@ import { useTasksStore } from "../stores/task.store";
 import type { Tag, Task } from "../types";
 import { Separator } from "@/src/components/ui/separator";
 import { COLOR_SWATCH_CLASS, DAYS_ORDER, TASK_COLORS } from "../constants";
+import { taskSchema, TaskSchemaType } from "../validations/tasl.chema";
 
 type Line = 1 | 2 | 3;
-
-const ColorSchema = z.string().min(1);
-
-const schema = z
-  .object({
-    title: z.string().min(2, "Title must be at least 2 characters"),
-    desc: z.string().max(250, "Description is too long"),
-    weekly: z.boolean(),
-    days: z
-      .array(z.enum(DAYS_ORDER as [WeekDays, ...WeekDays[]]))
-      .min(1, "Pick at least one day"),
-    range: z
-      .object({
-        from: z.date().optional(),
-        to: z.date().optional(),
-      })
-      .optional(),
-    line: z.union([z.literal(1), z.literal(2), z.literal(3)]),
-    color: ColorSchema,
-    tags: z.array(
-      z.object({
-        id: z.string().min(1),
-        label: z.string().min(1),
-      }),
-    ),
-  })
-  .superRefine((v, ctx) => {
-    if (!v.weekly) {
-      const from = v.range?.from;
-      const to = v.range?.to;
-      if (!from || !to) {
-        ctx.addIssue({
-          code: "custom",
-          path: ["range"],
-          message: "Pick a date range",
-        });
-      }
-    }
-  });
-
-type FormValues = z.infer<typeof schema>;
 
 const DEFAULT_TAGS: Tag[] = [];
 
 export function CreateTaskTab() {
   const createTask = useTasksStore((s) => s.newTask);
 
-  const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
+  const form = useForm<TaskSchemaType>({
+    resolver: zodResolver(taskSchema),
     defaultValues: {
       title: "",
       desc: "",
@@ -118,7 +77,7 @@ export function CreateTaskTab() {
     form.setValue("days", next, { shouldValidate: true });
   };
 
-  const onSubmit = (values: FormValues) => {
+  const onSubmit = (values: TaskSchemaType) => {
     const id = crypto.randomUUID();
 
     const startDateKey =
