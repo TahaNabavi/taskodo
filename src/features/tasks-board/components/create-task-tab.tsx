@@ -139,14 +139,14 @@ export function CreateTaskTab() {
 
             <Separator className="bg-white/20" />
 
-            <CardContent className="grid gap-6 grid-cols-1 lg:grid-cols-2">
+            <CardContent className="grid gap-6 grid-cols-1 xl:grid-cols-2">
               <div className="p-1">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
                   <FormField
                     control={form.control}
                     name="title"
                     render={({ field }) => (
-                      <FormItem className="md:col-span-2">
+                      <FormItem className="xl:col-span-2">
                         <FormLabel>Title</FormLabel>
                         <FormControl>
                           <Input
@@ -164,7 +164,7 @@ export function CreateTaskTab() {
                     control={form.control}
                     name="desc"
                     render={({ field }) => (
-                      <FormItem className="md:col-span-2">
+                      <FormItem className="xl:col-span-2">
                         <FormLabel>Description</FormLabel>
                         <FormControl>
                           <Textarea
@@ -252,6 +252,7 @@ export function CreateTaskTab() {
                             selected={field.value as DateRange | undefined}
                             onSelect={(r) => field.onChange(r)}
                             numberOfMonths={2}
+                            className="w-full rounded-2xl"
                             initialFocus
                           />
                         </div>
@@ -273,7 +274,7 @@ export function CreateTaskTab() {
                     Placement
                   </p>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-end">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 items-end">
                     <FormField
                       control={form.control}
                       name="line"
@@ -352,7 +353,7 @@ export function CreateTaskTab() {
                   <div className="flex justify-end">
                     <Button
                       type="submit"
-                      className="w-full md:w-auto rounded-xl"
+                      className="w-full xl:w-auto rounded-xl"
                       disabled={!form.formState.isValid}
                     >
                       Create task

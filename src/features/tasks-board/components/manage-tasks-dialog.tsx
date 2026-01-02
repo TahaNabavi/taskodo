@@ -207,12 +207,12 @@ function EditTaskDialog({
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
                 <FormField
                   control={form.control}
                   name="title"
                   render={({ field }) => (
-                    <FormItem className="md:col-span-2">
+                    <FormItem className="xl:col-span-2">
                       <FormLabel>Title</FormLabel>
                       <FormControl>
                         <Input className="rounded-xl" {...field} />
@@ -226,7 +226,7 @@ function EditTaskDialog({
                   control={form.control}
                   name="desc"
                   render={({ field }) => (
-                    <FormItem className="md:col-span-2">
+                    <FormItem className="xl:col-span-2">
                       <FormLabel>Description</FormLabel>
                       <FormControl>
                         <Textarea className="rounded-xl min-h-24" {...field} />
@@ -308,6 +308,7 @@ function EditTaskDialog({
                           selected={field.value as DateRange | undefined}
                           onSelect={(r) => field.onChange(r)}
                           numberOfMonths={2}
+                          className="w-full rounded-2xl"
                           initialFocus
                         />
                       </div>
@@ -324,7 +325,7 @@ function EditTaskDialog({
 
               <Separator />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
                 <FormField
                   control={form.control}
                   name="line"

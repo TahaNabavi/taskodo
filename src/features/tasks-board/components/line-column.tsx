@@ -7,6 +7,7 @@ import {
 } from "@dnd-kit/sortable";
 import { AnimatePresence, motion } from "motion/react";
 
+import { cn } from "@/src/lib/utils";
 import type { Task } from "../types";
 import { TaskCard } from "./task-card";
 
@@ -25,7 +26,12 @@ export function LineColumn({ line, title, tasks, dateKey }: Props) {
   return (
     <div
       ref={setNodeRef}
-      className="flex-1 rounded-4xl border border-black squircle bg-black/30 p-3 h-[calc(100vh-290px)]! overflow-y-scroll"
+      className={cn(
+        "w-full flex flex-col rounded-4xl squircle bg-black/30 p-3",
+        "h-auto overflow-visible",
+        "border border-black dark:border-white/5",
+        "xl:flex-1 xl:h-[calc(100vh-290px)] xl:overflow-y-scroll",
+      )}
     >
       <div className="mb-3 text-xs font-extralight text-primary">{title}</div>
 
@@ -41,9 +47,9 @@ export function LineColumn({ line, title, tasks, dateKey }: Props) {
                 initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -50, filter: "blur(10px)" }}
-                transition={{ duration: 0.1 * i, ease: "easeOut" }}
+                transition={{ duration: 0.06 * i, ease: "easeOut" }}
               >
-                <TaskCard key={t.id} task={t} dateKey={dateKey} />
+                <TaskCard task={t} dateKey={dateKey} />
               </motion.div>
             ))}
           </AnimatePresence>

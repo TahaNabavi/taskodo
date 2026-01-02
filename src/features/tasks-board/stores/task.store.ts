@@ -99,7 +99,6 @@ export const useTasksStore = create<TasksState>()(
       reorderWithinLine: (line, orderedIds) =>
         set((p) => {
           const next = p.tasks.map((t) => ({ ...t }));
-          //   const idsSet = new Set(orderedIds);
 
           orderedIds.forEach((id, i) => {
             const idx = next.findIndex((t) => t.id === id);

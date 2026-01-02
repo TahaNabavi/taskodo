@@ -24,10 +24,6 @@ function DialogClose({ ...props }: DialogPrimitive.Close.Props) {
   return <DialogPrimitive.Close data-slot="dialog-close" {...props} />;
 }
 
-/**
- * Overlay with explicit dark mode support.
- * - Dark mode: darker backdrop for better contrast.
- */
 function DialogOverlay({
   className,
   ...props
@@ -36,7 +32,7 @@ function DialogOverlay({
     <DialogPrimitive.Backdrop
       data-slot="dialog-overlay"
       className={cn(
-        "fixed inset-0 isolate z-50 duration-100 supports-backdrop-filter:backdrop-blur-xs",
+        "fixed inset-0 isolate z-50 duration-150 supports-backdrop-filter:backdrop-blur-xs",
         "data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0",
         "bg-black/40 dark:bg-black/60",
         className,
@@ -47,9 +43,15 @@ function DialogOverlay({
 }
 
 /**
- * Content with explicit dark mode support.
- * - Uses design tokens (bg-background, text-foreground, border-border)
- *   for shadcn-style theming, plus dark shadow adjustments.
+ * ✅ Responsive DialogContent
+ *
+ * Mobile:
+ * - Bottom sheet layout
+ * - max height
+ * - scroll inside
+ *
+ * Desktop:
+ * - Centered modal
  */
 function DialogContent({
   className,
@@ -62,50 +64,59 @@ function DialogContent({
   return (
     <DialogPortal>
       <DialogOverlay />
-      <DialogPrimitive.Popup
-        data-slot="dialog-content"
-        className={cn(
-          // Positioning
-          "fixed top-1/2 left-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2 outline-none",
-          // Sizing
-          "max-w-[calc(100%-2rem)] sm:max-w-md",
-          // Layout
-          "grid gap-6 rounded-xl p-6 text-sm",
-          // Theme (works with shadcn variables + dark mode)
-          "bg-background text-foreground border border-border",
-          // Shadow
-          "shadow-lg shadow-black/10 dark:shadow-black/40",
-          // Animations
-          "data-open:animate-in data-closed:animate-out",
-          "data-closed:fade-out-0 data-open:fade-in-0",
-          "data-closed:zoom-out-95 data-open:zoom-in-95",
-          "duration-100",
-          className,
-        )}
-        {...props}
-      >
-        {children}
 
-        {showCloseButton && (
-          <DialogPrimitive.Close
-            data-slot="dialog-close"
-            render={
-              <Button
-                variant="ghost"
-                size="icon-sm"
-                className={cn(
-                  "absolute top-4 right-4",
-                  "text-muted-foreground hover:text-foreground",
-                  "dark:hover:bg-white/10",
-                )}
-              />
-            }
-          >
-            <HugeiconsIcon icon={Cancel01Icon} strokeWidth={2} />
-            <span className="sr-only">Close</span>
-          </DialogPrimitive.Close>
+      {/* ✅ Layout container for responsiveness */}
+      <div
+        className={cn(
+          "fixed inset-0 z-50 flex items-end justify-center p-3 sm:items-center sm:p-6",
         )}
-      </DialogPrimitive.Popup>
+      >
+        <DialogPrimitive.Popup
+          data-slot="dialog-content"
+          className={cn(
+            // Width / max width
+            "w-full sm:max-w-md",
+            // Height constraints (important for mobile)
+            "max-h-[85dvh] overflow-y-auto",
+            // Layout
+            "grid gap-6 rounded-t-3xl sm:rounded-xl p-5 sm:p-6 text-sm",
+            // Theme
+            "bg-background text-foreground border border-border",
+            // Shadow
+            "shadow-xl shadow-black/20 dark:shadow-black/50",
+            // Animations
+            "data-open:animate-in data-closed:animate-out",
+            "data-closed:fade-out-0 data-open:fade-in-0",
+            "data-closed:translate-y-6 data-open:translate-y-0",
+            "sm:data-closed:zoom-out-95 sm:data-open:zoom-in-95",
+            "duration-150",
+            className,
+          )}
+          {...props}
+        >
+          {children}
+
+          {showCloseButton && (
+            <DialogPrimitive.Close
+              data-slot="dialog-close"
+              render={
+                <Button
+                  variant="ghost"
+                  size="icon-sm"
+                  className={cn(
+                    "absolute top-4 right-4",
+                    "text-muted-foreground hover:text-foreground",
+                    "dark:hover:bg-white/10",
+                  )}
+                />
+              }
+            >
+              <HugeiconsIcon icon={Cancel01Icon} strokeWidth={2} />
+              <span className="sr-only">Close</span>
+            </DialogPrimitive.Close>
+          )}
+        </DialogPrimitive.Popup>
+      </div>
     </DialogPortal>
   );
 }

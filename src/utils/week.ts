@@ -38,3 +38,17 @@ export function getWeekdayDateInSameWeek(baseDate: Date, weekday: WeekDays) {
 
   return result;
 }
+
+export function startOfWeekSunday(d: Date) {
+  const x = new Date(d);
+  x.setHours(0, 0, 0, 0);
+  const day = x.getDay(); // 0 = Sunday
+  x.setDate(x.getDate() - day);
+  return x;
+}
+
+export function addDays(d: Date, days: number) {
+  const x = new Date(d);
+  x.setDate(x.getDate() + days);
+  return x;
+}
