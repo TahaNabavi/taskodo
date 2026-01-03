@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/src/lib/utils";
 import type { Task } from "../types";
 import { TaskCard } from "./task-card";
+import { MAIN_DIV_HEIGHT_CLASS } from "../constants";
 
 export type Line = 1 | 2 | 3;
 
@@ -28,9 +29,9 @@ export function LineColumn({ line, title, tasks, dateKey }: Props) {
       ref={setNodeRef}
       className={cn(
         "w-full flex flex-col rounded-4xl squircle bg-black/30 p-3",
-        "h-auto overflow-visible",
         "border border-black dark:border-white/5",
-        "xl:flex-1 xl:h-[calc(100vh-290px)] xl:overflow-y-scroll",
+        "xl:flex-1  overflow-y-scroll",
+        MAIN_DIV_HEIGHT_CLASS,
       )}
     >
       <div className="mb-3 text-xs font-extralight text-primary">{title}</div>

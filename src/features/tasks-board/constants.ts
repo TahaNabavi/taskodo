@@ -1,5 +1,8 @@
 import type { WeekDays } from "@/src/types/common";
 
+export const MAIN_DIV_HEIGHT_CLASS =
+  "h-[calc(100vh-150px)] md:h-[calc(100vh-195px)] lg:h-[calc(100vh-275px)] xl:h-[calc(100vh-290px)]";
+
 export const TAB_CONTENT = [
   { title: "sunday" },
   { title: "monday" },

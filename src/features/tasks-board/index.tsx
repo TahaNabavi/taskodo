@@ -81,10 +81,10 @@ export function TasksBoardFeature() {
   }, [mobileDayTasks]);
 
   return (
-    <div className="relative w-dvw h-dvh flex justify-center p-4 xl:p-8 font-calendas xl:text-base text-xs sm:text-sm">
+    <div className="relative w-dvw h-dvh flex justify-center p-0 md:p-4 lg:p-6 xl:p-8 font-calendas xl:text-base text-xs sm:text-sm">
       <GooeySvgFilter id="gooey-filter" strength={20} />
 
-      <div className="w-full xl:w-4/5 relative mt-10 xl:mt-16">
+      <div className="w-full xl:w-4/5 relative lg:mt-10 xl:mt-16">
         {/* -------------------------------------------
             DESKTOP LAYOUT
         -------------------------------------------- */}
@@ -126,7 +126,7 @@ export function TasksBoardFeature() {
             MOBILE LAYOUT
         -------------------------------------------- */}
         <div className="xl:hidden">
-          <div className="rounded-3xl bg-zinc-900/95 p-4 space-y-4">
+          <div className="md:rounded-3xl h-screen md:h-[calc(100vh-40px)] lg:h-[calc(100vh-124px)] bg-zinc-900/95 p-4 space-y-4">
             {/* 1) LINE HEADER */}
             <MobileLineTabs
               activeLine={mobileActiveLine}
@@ -140,7 +140,7 @@ export function TasksBoardFeature() {
               setWeekOffset={setWeekOffset}
               weekStart={weekStart}
               weekEnd={weekEnd}
-              activeDayIndex={activeTab === -1 ? viewIndex : activeTab}
+              activeDayIndex={activeTab}
               setActiveDayIndex={(i) => setActiveTab(i)}
               dayStats={dayStats}
               openCreate={() => setActiveTab(-1)}

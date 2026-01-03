@@ -515,7 +515,7 @@ export function ManageTasksDialog({ trigger }: { trigger: ReactNode }) {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2 shrink-0 opacity-0 group-hover/btn:opacity-100 transition-all">
+                    <div className="flex items-center gap-2 shrink-0 xl:opacity-0 group-hover/btn:opacity-100 transition-all">
                       {/* Delete */}
                       <ConfirmDeleteDialog task={task}>
                         <Button

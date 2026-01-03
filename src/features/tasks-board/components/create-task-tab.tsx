@@ -41,7 +41,12 @@ import {
 import { useTasksStore } from "../stores/task.store";
 import type { Tag, Task } from "../types";
 import { Separator } from "@/src/components/ui/separator";
-import { COLOR_SWATCH_CLASS, DAYS_ORDER, TASK_COLORS } from "../constants";
+import {
+  COLOR_SWATCH_CLASS,
+  DAYS_ORDER,
+  MAIN_DIV_HEIGHT_CLASS,
+  TASK_COLORS,
+} from "../constants";
 import { taskSchema, TaskSchemaType } from "../validations/tasl.chema";
 
 type Line = 1 | 2 | 3;
@@ -126,7 +131,12 @@ export function CreateTaskTab() {
     <div className="w-full">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Card className="w-full rounded-2xl bg-black/20 border-black h-[calc(100vh-290px)]! overflow-y-scroll">
+          <Card
+            className={cn(
+              "w-full rounded-2xl bg-black/20 border-black overflow-y-scroll",
+              MAIN_DIV_HEIGHT_CLASS,
+            )}
+          >
             <CardHeader className="">
               <CardTitle className="text-white/80 text-2xl">
                 Create Task

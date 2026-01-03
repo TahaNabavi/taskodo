@@ -167,7 +167,7 @@ export function LiveButton({
         "group relative flex items-center justify-center gap-3 overflow-hidden rounded-lg border border-gray-300 bg-white px-6",
         disableMotion
           ? "transition-none"
-          : "transition-all duration-500 ease-out hover:border-gray-400 hover:shadow-lg hover:shadow-black/20 hover:scale-105",
+          : "transition-all duration-500 ease-out hover:border-gray-400 hover:shadow-lg hover:shadow-black/20 xl:hover:scale-105 hover:scale-[101%]",
         "before:absolute before:inset-0 before:-translate-x-full before:bg-linear-to-r before:from-transparent before:via-black/5 before:to-transparent",
         disableMotion
           ? "before:transition-none"
@@ -188,7 +188,7 @@ export function LiveButton({
     >
       <div className="absolute inset-0 rounded-lg bg-linear-to-r from-cyan-200/0 via-cyan-200/10 to-cyan-200/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:from-cyan-200/0 dark:via-cyan-200/10 dark:to-cyan-200/0" />
 
-      <span className="relative w-full z-10 text-sm font-medium tracking-wide whitespace-nowrap text-black transition-all duration-300 group-hover:text-cyan-600 dark:text-white dark:group-hover:text-cyan-50 p-4">
+      <span className="relative flex flex-col justify-center w-full z-10 text-sm font-medium tracking-wide whitespace-nowrap text-black transition-all duration-300 group-hover:text-cyan-600 dark:text-white dark:group-hover:text-cyan-50 p-4">
         {children}
       </span>
 

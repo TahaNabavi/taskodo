@@ -61,7 +61,6 @@ export function TaskCard({ task, dateKey }: Props) {
   const doubleClickHandler = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("dawd");
   };
 
   return (
@@ -70,7 +69,7 @@ export function TaskCard({ task, dateKey }: Props) {
         onDoubleClick={doubleClickHandler}
         color={task.color as never}
         className={cn(
-          "squircle rounded-3xl w-full relative",
+          "squircle rounded-3xl w-full relative pr-10 pl-8 xl:pl-6 xl:pr-6",
           isChecked && "opacity-50",
           isChecked && checked?.late && "border-red-600! shadow-red-600!",
           isChecked && checked?.early && "border-green-600! shadow-green-600!",
@@ -82,17 +81,17 @@ export function TaskCard({ task, dateKey }: Props) {
           {...listeners}
           type="button"
           aria-label="Drag task"
-          className="absolute top-2 -left-5 opacity-0 transition-opacity group-hover:opacity-100 hover:text-white cursor-grab active:cursor-grabbing"
+          className="absolute xl:top-2 left-[calc(100%+25px)] xl:-left-5 xl:opacity-0 transition-opacity group-hover:opacity-100 hover:text-white cursor-grab active:cursor-grabbing "
           style={{ touchAction: "none" }}
           onClick={(e) => e.stopPropagation()}
         >
           <HugeiconsIcon
             icon={ScrollVerticalIcon}
-            className="h-5 w-5 text-primary"
+            className="w-8 h-8 xl:h-5 xl:w-5 text-primary"
           />
         </button>
 
-        <div className="mr-auto text-left space-y-2">
+        <div className="mr-auto text-left space-y-2 flex flex-col justify-center">
           <div className="text-sm font-medium opacity-90">{task.title}</div>
           <div className="text-xs text-muted-foreground opacity-70 break-normal whitespace-normal">
             {task.desc}
@@ -102,7 +101,7 @@ export function TaskCard({ task, dateKey }: Props) {
             onClick={checkHandler}
             size="xs"
             variant={isChecked ? "destructive" : "default"}
-            className="uppercase border-0 transition-all border-b-2 border-white/30 active:border-b active:scale-95 absolute bottom-1 -left-5 rounded-lg group-hover:opacity-100 opacity-0"
+            className="uppercase border-0 transition-all border-b-2 border-white/30 active:border-b active:scale-95 absolute xl:bottom-1 -left-5 rounded-lg xl:group-hover:opacity-100 xl:opacity-0 h-10 xl:h-6"
           >
             {isChecked ? (
               <HugeiconsIcon

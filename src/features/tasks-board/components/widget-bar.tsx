@@ -30,10 +30,32 @@ export function MobileWidgetBar({
   dayStats,
   openCreate,
 }: Props) {
-  const dayTitle = TAB_CONTENT[activeDayIndex]?.title ?? "day";
+  const dayTitle =
+    activeDayIndex === -1
+      ? "Create Task"
+      : (TAB_CONTENT[activeDayIndex]?.title ?? "unknown");
 
   return (
     <div className="w-full flex items-center justify-between gap-2">
+      {/* day picker dialog */}
+      <MobileDayPickerDialog
+        activeDayIndex={activeDayIndex}
+        setActiveDayIndex={setActiveDayIndex}
+        stats={dayStats}
+        weekOffset={weekOffset}
+        setWeekOffset={setWeekOffset}
+        weekStart={weekStart}
+        weekEnd={weekEnd}
+        trigger={
+          <Button
+            variant="secondary"
+            className="rounded-xl capitalize px-4 bg-secondary!"
+          >
+            {dayTitle}
+          </Button>
+        }
+      />
+
       {/* left widgets */}
       <div className="flex items-center gap-2">
         <Button
@@ -55,22 +77,6 @@ export function MobileWidgetBar({
           }
         />
       </div>
-
-      {/* day picker dialog */}
-      <MobileDayPickerDialog
-        activeDayIndex={activeDayIndex}
-        setActiveDayIndex={setActiveDayIndex}
-        stats={dayStats}
-        weekOffset={weekOffset}
-        setWeekOffset={setWeekOffset}
-        weekStart={weekStart}
-        weekEnd={weekEnd}
-        trigger={
-          <Button variant="secondary" className="rounded-xl capitalize px-4">
-            {dayTitle}
-          </Button>
-        }
-      />
     </div>
   );
 }
