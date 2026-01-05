@@ -1,13 +1,19 @@
 "use client";
 
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Add02Icon, Edit03Icon } from "@hugeicons/core-free-icons";
+import {
+  Add02Icon,
+  DashboardSpeed01Icon,
+  Edit03Icon,
+} from "@hugeicons/core-free-icons";
 
 import { Button } from "@/src/components/ui/button";
 import { TAB_CONTENT } from "../constants";
 import { ManageTasksDialog } from "./manage-tasks-dialog";
 import { MobileDayPickerDialog } from "./day-picker-dialog";
 import { Dispatch, SetStateAction } from "react";
+import { useRouter } from "next/navigation";
+import { PATHS } from "@/src/routes/paths";
 
 type Props = {
   weekOffset: number;
@@ -30,6 +36,8 @@ export function MobileWidgetBar({
   dayStats,
   openCreate,
 }: Props) {
+  const router = useRouter();
+
   const dayTitle =
     activeDayIndex === -1
       ? "Create Task"
@@ -48,6 +56,7 @@ export function MobileWidgetBar({
         weekEnd={weekEnd}
         trigger={
           <Button
+            data-tour="mb:week-widget"
             variant="secondary"
             className="rounded-xl capitalize px-4 bg-secondary!"
           >
@@ -61,6 +70,18 @@ export function MobileWidgetBar({
         <Button
           variant="secondary"
           size="icon"
+          data-tour="mb:analytics"
+          className="rounded-xl"
+          onClick={() => router.push(PATHS.ANALYSTICS)}
+          aria-label="Create task"
+        >
+          <HugeiconsIcon icon={DashboardSpeed01Icon} />
+        </Button>
+
+        <Button
+          variant="secondary"
+          size="icon"
+          data-tour="mb:create-task"
           className="rounded-xl"
           onClick={openCreate}
           aria-label="Create task"
@@ -71,7 +92,12 @@ export function MobileWidgetBar({
         {/* Manage tasks */}
         <ManageTasksDialog
           trigger={
-            <Button variant="ghost" size="icon" className="rounded-xl">
+            <Button
+              data-tour="mb:manage-tasks"
+              variant="ghost"
+              size="icon"
+              className="rounded-xl"
+            >
               <HugeiconsIcon icon={Edit03Icon} />
             </Button>
           }

@@ -89,6 +89,7 @@ function taskToFormValues(task: Task): TaskSchemaType {
             : undefined,
           to: task.endDateKey ? fromLocalDateKey(task.endDateKey) : undefined,
         },
+    effort: (task.effort as never) ?? 1,
     line: (task.line ?? 1) as Line,
     color: task.color ?? "zinc",
     tags: task.tags ?? DEFAULT_TAGS,
@@ -187,6 +188,7 @@ function EditTaskDialog({
       weekly: values.weekly,
       days: values.days,
       line: values.line,
+      effort: values.effort,
       color: values.color,
       tags: values.tags ?? [],
       ...(values.weekly
@@ -325,7 +327,7 @@ function EditTaskDialog({
 
               <Separator />
 
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-3">
                 <FormField
                   control={form.control}
                   name="line"
@@ -336,7 +338,7 @@ function EditTaskDialog({
                         value={String(line)}
                         onValueChange={(v) => field.onChange(Number(v) as Line)}
                       >
-                        <SelectTrigger className="rounded-xl">
+                        <SelectTrigger className="rounded-xl w-full">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -352,6 +354,35 @@ function EditTaskDialog({
 
                 <FormField
                   control={form.control}
+                  name="effort"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Effort</FormLabel>
+
+                      <Select
+                        value={String(field.value)}
+                        onValueChange={(v) => field.onChange(Number(v))}
+                      >
+                        <SelectTrigger className="rounded-xl w-full">
+                          <SelectValue />
+                        </SelectTrigger>
+
+                        <SelectContent>
+                          <SelectItem value="1">1 (Easy)</SelectItem>
+                          <SelectItem value="2">2</SelectItem>
+                          <SelectItem value="3">3</SelectItem>
+                          <SelectItem value="4">4</SelectItem>
+                          <SelectItem value="5">5 (Hard)</SelectItem>
+                        </SelectContent>
+                      </Select>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
                   name="color"
                   render={({ field }) => (
                     <FormItem>
@@ -360,7 +391,7 @@ function EditTaskDialog({
                         value={field.value}
                         onValueChange={field.onChange}
                       >
-                        <SelectTrigger className="rounded-xl">
+                        <SelectTrigger className="rounded-xl w-full">
                           <div className="flex items-center gap-2">
                             <span
                               className={cn(

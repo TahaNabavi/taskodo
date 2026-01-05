@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Task } from "@/src/features/tasks-board/types";
 import { WeekDays } from "@/src/types/common";
+import { TASKS_TEST_DATA } from "@/src/tests/task.testdata";
 
 type Line = 1 | 2 | 3;
 
@@ -45,118 +46,7 @@ function matchesDay(task: Task, day: WeekDays | Date) {
 export const useTasksStore = create<TasksState>()(
   persist(
     (set, get) => ({
-      tasks: [
-        // {
-        //   id: "sun-l1-1",
-        //   title: "Sunday Planning",
-        //   desc: "Review your goals and plan the top 3 priorities for this week.",
-        //   tags: [{ id: "planning", label: "Planning" }],
-        //   color: "zinc",
-        //   line: 1,
-        //   order: 1,
-        //   checked: [],
-        //   weekly: true,
-        //   days: ["sunday", "saturday"],
-        // },
-        // {
-        //   id: "sun-l1-2",
-        //   title: "Weekly Overview",
-        //   desc: "Check your schedule and prepare for important events.",
-        //   tags: [{ id: "work", label: "Work" }],
-        //   color: "blue",
-        //   line: 1,
-        //   order: 2,
-        //   checked: [],
-        //   weekly: true,
-        //   days: ["sunday", "saturday"],
-        // },
-        // {
-        //   id: "sun-l1-3",
-        //   title: "Inbox Cleanup",
-        //   desc: "Clear your inbox and archive anything unnecessary.",
-        //   tags: [{ id: "admin", label: "Admin" }],
-        //   color: "slate",
-        //   line: 1,
-        //   order: 3,
-        //   checked: [],
-        //   weekly: true,
-        //   days: ["sunday", "saturday"],
-        // },
-        // // Line 2
-        // {
-        //   id: "sun-l2-1",
-        //   title: "Deep Learning",
-        //   desc: "Spend 45 minutes learning something valuable and take notes.",
-        //   tags: [{ id: "learning", label: "Learning" }],
-        //   color: "indigo",
-        //   line: 2,
-        //   order: 1,
-        //   checked: [],
-        //   weekly: true,
-        //   days: ["sunday", "saturday"],
-        // },
-        // {
-        //   id: "sun-l2-2",
-        //   title: "Side Project",
-        //   desc: "Work 1 hour on a side project or personal build.",
-        //   tags: [{ id: "creative", label: "Creative" }],
-        //   color: "fuchsia",
-        //   line: 2,
-        //   order: 2,
-        //   checked: [],
-        //   weekly: true,
-        //   days: ["sunday", "saturday"],
-        // },
-        // {
-        //   id: "sun-l2-3",
-        //   title: "Skill Practice",
-        //   desc: "Practice a technical skill: coding, reading docs, or exercises.",
-        //   tags: [{ id: "practice", label: "Practice" }],
-        //   color: "violet",
-        //   line: 2,
-        //   order: 3,
-        //   checked: [],
-        //   weekly: true,
-        //   days: ["sunday", "saturday"],
-        // },
-        // // Line 3
-        // {
-        //   id: "sun-l3-1",
-        //   title: "Walk & Reset",
-        //   desc: "Go for a light walk to refresh your mind.",
-        //   tags: [{ id: "health", label: "Health" }],
-        //   color: "emerald",
-        //   line: 3,
-        //   order: 1,
-        //   checked: [],
-        //   weekly: true,
-        //   days: ["sunday", "saturday"],
-        // },
-        // {
-        //   id: "sun-l3-2",
-        //   title: "Meal Prep",
-        //   desc: "Prepare food for the week so weekdays become easier.",
-        //   tags: [{ id: "home", label: "Home" }],
-        //   color: "amber",
-        //   line: 3,
-        //   order: 2,
-        //   checked: [],
-        //   weekly: true,
-        //   days: ["sunday", "saturday"],
-        // },
-        // {
-        //   id: "sun-l3-3",
-        //   title: "Relax Time",
-        //   desc: "Do something enjoyable without guilt for at least 1 hour.",
-        //   tags: [{ id: "life", label: "Life" }],
-        //   color: "rose",
-        //   line: 3,
-        //   order: 3,
-        //   checked: [],
-        //   weekly: true,
-        //   days: ["sunday", "saturday"],
-        // },
-      ],
+      tasks: TASKS_TEST_DATA,
 
       setTasks: (tasks) => set({ tasks }),
       clearTasks: () => set({ tasks: [] }),

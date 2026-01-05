@@ -59,6 +59,7 @@ export function TabsNav({ activeTab, setActiveTab, viewIndex }: Props) {
 
       <button
         onClick={() => setActiveTab(-1)}
+        data-tour="create-task"
         className="w-30 flex items-center justify-center gap-3 h-8 xl:h-12 cursor-pointer group/btn"
       >
         <span

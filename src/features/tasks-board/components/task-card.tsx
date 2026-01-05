@@ -80,6 +80,7 @@ export function TaskCard({ task, dateKey }: Props) {
           {...attributes}
           {...listeners}
           type="button"
+          data-tour="drag-handle"
           aria-label="Drag task"
           className="absolute xl:top-2 left-[calc(100%+25px)] xl:-left-5 xl:opacity-0 transition-opacity group-hover:opacity-100 hover:text-white cursor-grab active:cursor-grabbing "
           style={{ touchAction: "none" }}
@@ -100,6 +101,8 @@ export function TaskCard({ task, dateKey }: Props) {
           <Button
             onClick={checkHandler}
             size="xs"
+            data-tour="check-button"
+            data-tour1="md:check-button"
             variant={isChecked ? "destructive" : "default"}
             className="uppercase border-0 transition-all border-b-2 border-white/30 active:border-b active:scale-95 absolute xl:bottom-1 -left-5 rounded-lg xl:group-hover:opacity-100 xl:opacity-0 h-10 xl:h-6"
           >

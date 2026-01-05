@@ -6,6 +6,7 @@ import {
   ArrowDown01Icon,
   ArrowTurnBackwardIcon,
   ArrowUp01Icon,
+  DashboardSpeed01Icon,
   Edit03Icon,
 } from "@hugeicons/core-free-icons";
 
@@ -19,6 +20,8 @@ import {
 import { Separator } from "@/src/components/ui/separator";
 import { ManageTasksDialog } from "./manage-tasks-dialog";
 import { Dispatch, SetStateAction } from "react";
+import { PATHS } from "@/src/routes/paths";
+import { useRouter } from "next/navigation";
 
 type Props = {
   activeTab: number;
@@ -35,6 +38,8 @@ export function WeekSidebar({
   weekEnd,
   setWeekOffset,
 }: Props) {
+  const router = useRouter();
+
   const weekStartDayOfMonth = weekStart.getDate();
   const weekEndDayOfMonth = weekEnd.getDate();
 
@@ -42,6 +47,7 @@ export function WeekSidebar({
     <div className="w-12 absolute top-24 -right-12 flex flex-col items-center justify-center">
       {/* Week widget */}
       <div
+        data-tour="week-widget"
         className={cn(
           "bg-zinc-900/95 w-full flex flex-col items-center justify-center transition-all py-4 gap-1",
           activeTab === -1 && "dark:text-white/30",
@@ -113,10 +119,24 @@ export function WeekSidebar({
         </AnimatePresence>
       </div>
 
-      <Separator className="opacity-10" />
+      <Separator />
+
+      {/* Analytics */}
+      <div data-tour="analytics" className="w-full bg-zinc-900/95 px-2 py-4">
+        <Button
+          variant="ghost"
+          className="dark:hover:bg-neutral-200/10 dark:hover:text-white px-1 rounded-full delay-100"
+          aria-label="Analytics"
+          onClick={() => router.push(PATHS.ANALYSTICS)}
+        >
+          <HugeiconsIcon icon={DashboardSpeed01Icon} />
+        </Button>
+      </div>
+
+      <Separator />
 
       {/* Manage tasks */}
-      <div className="w-full bg-zinc-900/95 px-2 py-4">
+      <div data-tour="manage-tasks" className="w-full bg-zinc-900/95 px-2 py-4">
         <ManageTasksDialog
           trigger={
             <Button

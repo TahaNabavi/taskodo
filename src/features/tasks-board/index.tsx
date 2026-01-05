@@ -12,7 +12,7 @@ import { CreateTaskTab } from "./components/create-task-tab";
 import { TabsNav } from "./components/tabs-nav";
 import { MobileLineTabs } from "./components/line-tabs";
 import { MobileWidgetBar } from "./components/widget-bar";
-import { TaskLinesBoard } from "./components/tak-lines-board";
+import { TaskLinesBoard } from "./components/task-lines-board";
 
 type Line = 1 | 2 | 3;
 
@@ -103,7 +103,10 @@ export function TasksBoardFeature() {
 
             <TabsHeaderHighlight activeTab={activeTab} />
 
-            <div className="w-full bg-zinc-900/95 text-muted-foreground shadow-[inset_0_10px_15px_rgba(0,0,0,0.4)] p-6">
+            <div
+              data-tour="lines-board"
+              className="w-full bg-zinc-900/95 text-muted-foreground shadow-[inset_0_10px_15px_rgba(0,0,0,0.4)] p-6"
+            >
               {activeTab === -1 ? (
                 <CreateTaskTab />
               ) : (
@@ -125,7 +128,7 @@ export function TasksBoardFeature() {
         {/* -------------------------------------------
             MOBILE LAYOUT
         -------------------------------------------- */}
-        <div className="xl:hidden">
+        <div className="xl:hidden mobile">
           <div className="md:rounded-3xl h-screen md:h-[calc(100vh-40px)] lg:h-[calc(100vh-124px)] bg-zinc-900/95 p-4 space-y-4">
             {/* 1) LINE HEADER */}
             <MobileLineTabs
