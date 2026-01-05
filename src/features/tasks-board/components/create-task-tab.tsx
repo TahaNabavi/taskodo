@@ -65,6 +65,7 @@ export function CreateTaskTab() {
       days: [],
       range: { from: undefined, to: undefined },
       line: 1,
+      effort: 1,
       color: "zinc",
       tags: DEFAULT_TAGS,
     },
@@ -284,7 +285,7 @@ export function CreateTaskTab() {
                     Placement
                   </p>
 
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 items-end">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 items-end">
                     <FormField
                       control={form.control}
                       name="line"
@@ -297,7 +298,7 @@ export function CreateTaskTab() {
                               field.onChange(Number(v) as Line)
                             }
                           >
-                            <SelectTrigger className="rounded-xl">
+                            <SelectTrigger className="rounded-xl w-full">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
@@ -306,6 +307,35 @@ export function CreateTaskTab() {
                               <SelectItem value="3">Line 3</SelectItem>
                             </SelectContent>
                           </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="effort"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Effort</FormLabel>
+
+                          <Select
+                            value={String(field.value)}
+                            onValueChange={(v) => field.onChange(Number(v))}
+                          >
+                            <SelectTrigger className="rounded-xl w-full">
+                              <SelectValue />
+                            </SelectTrigger>
+
+                            <SelectContent>
+                              <SelectItem value="1">1 (Easy)</SelectItem>
+                              <SelectItem value="2">2</SelectItem>
+                              <SelectItem value="3">3</SelectItem>
+                              <SelectItem value="4">4</SelectItem>
+                              <SelectItem value="5">5 (Hard)</SelectItem>
+                            </SelectContent>
+                          </Select>
+
                           <FormMessage />
                         </FormItem>
                       )}
@@ -322,7 +352,7 @@ export function CreateTaskTab() {
                             value={field.value}
                             onValueChange={field.onChange}
                           >
-                            <SelectTrigger className="rounded-xl">
+                            <SelectTrigger className="rounded-xl w-full">
                               <div className="flex items-center gap-2">
                                 <span
                                   className={cn(

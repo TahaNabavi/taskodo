@@ -9,7 +9,7 @@ type Props = {
 
 export function TabsHeaderHighlight({ activeTab }: Props) {
   return (
-    <div className="flex w-full">
+    <div data-tour="weekday-tabs" className="flex w-full">
       {TAB_CONTENT.map((_, index) => (
         <div key={index} className="relative flex-1 h-8 xl:h-12">
           {activeTab === index && (

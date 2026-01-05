@@ -1,13 +1,17 @@
 import { WeekDays } from "@/src/types/common";
 import { Tag } from "./tag";
-type Line = 1 | 2 | 3;
+
+export type Line = 1 | 2 | 3;
+export type Effort = 1 | 2 | 3 | 4 | 5;
+
 export type Task = {
   id: string;
   title: string;
   desc: string;
   tags: Tag[];
   color: string;
-  line: 1 | 2 | 3;
+  line: Line;
+  effort?: Effort;
   order: number;
   checked: { date: string; late: boolean; early: boolean }[];
   startDateKey?: string;

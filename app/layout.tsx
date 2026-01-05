@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { sunday } from "@/src/assets/fonts";
+import RootLayout from "@/src/layouts/root";
 
 export const metadata: Metadata = {
   title: {
@@ -55,18 +55,10 @@ export const metadata: Metadata = {
   category: "productivity",
 };
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${sunday.variable} antialiased bg-neutral-950 text-white`}
-      >
-        {children}
-      </body>
-    </html>
-  );
+  return <RootLayout>{children}</RootLayout>;
 }

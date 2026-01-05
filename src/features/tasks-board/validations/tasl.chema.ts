@@ -19,6 +19,13 @@ export const taskSchema = z
       })
       .optional(),
     line: z.union([z.literal(1), z.literal(2), z.literal(3)]),
+    effort: z.union([
+      z.literal(1),
+      z.literal(2),
+      z.literal(3),
+      z.literal(4),
+      z.literal(5),
+    ]),
     color: ColorSchema,
     tags: z.array(
       z.object({

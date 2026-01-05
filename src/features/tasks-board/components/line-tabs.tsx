@@ -19,7 +19,10 @@ const LINES: { value: Line; label: string }[] = [
 
 export function MobileLineTabs({ activeLine, setActiveLine, counts }: Props) {
   return (
-    <div className="relative flex w-full overflow-hidden rounded-2xl bg-white/5">
+    <div
+      data-tour="mb:lines-board"
+      className="relative flex w-full overflow-hidden rounded-2xl bg-white/5"
+    >
       {LINES.map((l) => {
         const isActive = l.value === activeLine;
         const count = counts?.[l.value] ?? 0;

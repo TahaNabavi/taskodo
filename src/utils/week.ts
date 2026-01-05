@@ -1,14 +1,5 @@
-import { WeekDays } from "@/src/types/common";
-
-const WEEK: WeekDays[] = [
-  "sunday",
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-];
+import { WEEK } from "../data/week";
+import { WeekDays } from "../types/common";
 
 export function toLocalDateKey(d: Date) {
   const y = d.getFullYear();
