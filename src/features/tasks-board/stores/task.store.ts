@@ -46,7 +46,8 @@ function matchesDay(task: Task, day: WeekDays | Date) {
 export const useTasksStore = create<TasksState>()(
   persist(
     (set, get) => ({
-      tasks: TASKS_TEST_DATA,
+      tasks: [],
+      // tasks: TASKS_TEST_DATA,
 
       setTasks: (tasks) => set({ tasks }),
       clearTasks: () => set({ tasks: [] }),

@@ -67,7 +67,7 @@ export function OnboardingDialog() {
         if (!v) close();
       }}
     >
-      <DialogContent className="">
+      <DialogContent className="z-1000">
         <DialogHeader>
           <DialogTitle className="text-white/80 text-xl">
             {content.title}
